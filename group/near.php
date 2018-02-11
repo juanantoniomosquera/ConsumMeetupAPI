@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
  
 // include database and object files
 include_once '../config/database.php';
-include_once '../groups/group.php';
+include_once '../objects/group.php';
  
 // instantiate database and group object
 $database = new Database();
