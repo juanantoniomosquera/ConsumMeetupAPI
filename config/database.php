@@ -3,9 +3,9 @@ class Database{
  
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "ConsumMeetupAPI_DB";
-    private $username = "root";
-    private $password = "anave21";
+    private $db_name = "meetup";
+    private $username = "meetup";
+    private $password = "abc123.";
     public $conn;
  
     // get the database connection
