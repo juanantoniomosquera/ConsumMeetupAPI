@@ -15,7 +15,7 @@
   $group_lat = json_encode($_POST['group']['group_lat']);
   $group_lon = json_encode($_POST['group']['group_lon']);
 
-  $mysqli = Database::getInstance();
+  $mysqli = $database->getConnection();
  
   if ($mysqli->connect_errno) {
     die( "Error al conectar a MySQL: " . $mysqli->error );
