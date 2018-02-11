@@ -1,27 +1,26 @@
 <?php
-// required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+  // required headers
+  header("Access-Control-Allow-Origin: *");
+  header("Content-Type: application/json; charset=UTF-8");
  
-// include database and object files
-include_once '../config/database.php';
-include_once '../objects/group.php';
+  // include database and object files
+  include_once '../config/database.php';
+  include_once '../objects/group.php';
  
-// instantiate database and group object
-$database = new Database();
-$db = $database->getConnection();
+  // instantiate database and group object
+  $database = new Database();
+  $db = $database->getConnection();
  
-// initialize object
-$group = new Group($db);
+  // initialize object
+  $group = new Group($db);
  
-// query groups
-$stmt = $group->givemeAllGroups();
-$num = $stmt->rowCount();
+  // query groups
+  $stmt = $group->givemeAllGroups();
+  $num = $stmt->rowCount();
  
-// check if more than 0 record found
-if($num>0){
+  // check if more than 0 record found
+  if($num>0){
  
-    // products array
     $groups_arr=array();
     $groups_arr["records"]=array();
  
