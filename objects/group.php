@@ -41,9 +41,7 @@ class Group {
             WHERE
                 group_lon = ?
             AND
-                group_lat = ? 
-            LIMIT
-                0,1";
+                group_lat = ?";
  
     $stmt = $this->conn->prepare( $query );
  
