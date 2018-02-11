@@ -61,6 +61,41 @@ class Group {
     $this->group_country = $row['group_country'];
     $this->group_lon = $row['group_lon'];
     $this->group_lat = $row['group_lat'];
-    }  
-  }   
+  }  
+
+  function insertRsvp(){
+ 
+    $query = "INSERT INTO
+                " . $this->tableName . "
+            SET
+                group_id=:group_id, group_name=:group_name, group_city=:group_city, group_country=:group_country, group_lon=:group_lon, group_lat=:group_lat";
+ 
+    $stmt = $this->conn->prepare($query);
+ 
+    // limpiar
+    $this->group_id=htmlspecialchars(strip_tags($this->group_id));
+    $this->group_name=htmlspecialchars(strip_tags($this->group_name));
+    $this->group_city=htmlspecialchars(strip_tags($this->group_city));
+    $this->group_country=htmlspecialchars(strip_tags($this->group_country));
+    $this->group_lon=htmlspecialchars(strip_tags($this->group_lon));
+    $this->group_lat=htmlspecialchars(strip_tags($this->group_lat));
+ 
+    // bind values
+    $stmt->bindParam(":group_id", $this->group_id);
+    $stmt->bindParam(":group_name", $this->group_name);
+    $stmt->bindParam(":group_city", $this->group_city;
+    $stmt->bindParam(":group_country", $this->group_country);
+    $stmt->bindParam(":group_lon", $this->group_lon);
+    $stmt->bindParam(":group_lat", $this->group_lat);
+ 
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
+     
+  }
+
+}
 ?>
