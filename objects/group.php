@@ -37,7 +37,7 @@ class Group {
     $query = "SELECT
                 group_id,group_name,group_city,group_country, group_lon, group_lat
             FROM
-                " . $this->table_name . "
+                " . $this->tableName . "
             WHERE
                 group_lon = ?
             AND
