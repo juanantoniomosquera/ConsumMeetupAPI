@@ -39,9 +39,9 @@ class Group {
             FROM
                 " . $this->tableName . "
             WHERE
-                group_lon like '%?%'
+                group_lon = ?
             AND
-                group_lat like '%?%'";
+                group_lat = ?";
  
     $stmt = $this->conn->prepare( $query );
  
