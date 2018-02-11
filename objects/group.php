@@ -83,7 +83,7 @@ class Group {
     // bind values
     $stmt->bindParam(":group_id", $this->group_id);
     $stmt->bindParam(":group_name", $this->group_name);
-    $stmt->bindParam(":group_city", $this->group_city;
+    $stmt->bindParam(":group_city", $this->group_city);
     $stmt->bindParam(":group_country", $this->group_country);
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
