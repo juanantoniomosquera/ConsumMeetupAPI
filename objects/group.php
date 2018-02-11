@@ -45,11 +45,9 @@ class Group {
             LIMIT
                 0,1";
  
-    // prepare query statement
     $stmt = $this->conn->prepare( $query );
  
-    // bind id of product to be updated
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(2, $this->group_lon,$this->group_lat);
  
     // execute query
     $stmt->execute();
