@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<script src="shared/bower_components/jquery/jquery.min.js"></script>
+		<script src="shared/bower_components/must/must.js"></script>
+    		<script>
+      			must.Rsvps(function(rsvp) {
+		        	
+				$('#rsvps').prepend(
+			          	'<tr><td>' + rsvp.member.member_name +
+          				'</td><td>' + rsvp.group.group_name +
+          				'</td><td>' + (rsvp.event.time ? new Date(rsvp.event.time) : '') +
+          				'</td><td>' + rsvp.group.group_city + ', ' + rsvp.group.group_country +
+          				'</td><td>' + rsvp.group.group_lat + ', ' + rsvp.group.group_lon +
+          				'</td><td>Almacenado' +
+          				'</td></tr>'
+        			);
+				
+			insertRsvp(rsvp);
+      			});
+			
+			function insertRsvp(rsvp) {
+				var request = $.ajax({
+			                url: "store/insertRsvp.php",
+                			method: "POST",
+			                data: rsvp,
+			                dataType: "json",				
+            			}); 
+			};
+    		</script>
+	</head>
+  	<body>
+    		<table><thead>
+			<tr><th>Who</th><th>What</th><th>When</th><th>Where</th><th>lat,lon</th><th>BBDD</th></tr>
+    		</thead><tbody id="rsvps">
+    		</tbody></table>
+  	</body>
+</html>
