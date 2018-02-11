@@ -47,7 +47,8 @@ class Group {
  
     $stmt = $this->conn->prepare( $query );
  
-    $stmt->bindParam(2, $this->group_lon,$this->group_lat);
+    $stmt->bindParam(1, $this->group_lon);
+    $stmt->bindParam(2, $this->group_lat);
  
     // execute query
     $stmt->execute();
