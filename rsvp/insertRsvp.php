@@ -11,12 +11,12 @@
  
   $rsvp = new Rsvp($db);
  
-  $rsvp->rsvp_id = $_POST['rsvp']['rsvp_id'];
-  $rsvp->rsvp_name = $_POST['rsvp']['rsvp_name'];
-  $rsvp->rsvp_city = $_POST['rsvp']['rsvp_city'];
-  $rsvp->rsvp_country = $_POST['rsvp']['rsvp_country'];
-  $rsvp->rsvp_lon = $_POST['rsvp']['rsvp_lon'];
-  $rsvp->rsvp_lat = $_POST['rsvp']['rsvp_lat'];
+  $rsvp->group_id = $_POST['group']['group_id'];
+  $rsvp->group_name = $_POST['group']['group_name'];
+  $rsvp->group_city = $_POST['group']['group_city'];
+  $rsvp->group_country = $_POST['group']['group_country'];
+  $rsvp->group_lon = $_POST['group']['group_lon'];
+  $rsvp->group_lat = $_POST['group']['group_lat'];
   $rsvp->rsvp_id = $_POST['rsvp_id'];
   $rsvp->event_id = $_POST['event']['event_id'];
   $rsvp->event_name = $_POST['event']['event_name'];
