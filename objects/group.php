@@ -38,7 +38,7 @@ class Group {
     $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
                                 SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
                                 + COS(RADIANS(group_lon - :group_lon)) * COS(RADIANS(group_lat)) 
-                                * COS(RADIANS(group_lat))
+                                * COS(RADIANS(:group_lat))
                                 )
                    ) AS distance
              FROM " . $this->tableName . "
