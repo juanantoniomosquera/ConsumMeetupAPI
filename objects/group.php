@@ -35,7 +35,7 @@ class Group {
 
   function near() {
     //uso del Teorema del coseno para localizar grupos cercanos en distancia (200 km)
-    $query = "SELECT group_id_group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
+    $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
                                 SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
                                 + COS(RADIANS(group_lon - :group_lon)) * COS(RADIANS(group_lat)) 
                                 * COS(RADIANS(group_lat))
