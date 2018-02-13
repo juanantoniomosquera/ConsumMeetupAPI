@@ -2,13 +2,13 @@
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
-  $db = Database::getInstance();
   
   try {
-    $conn = $db->getConnection();
+    $db = Database::getInstance();
   } catch(PDOExcepcion $e) {
     print_r($e);
   }
+    $conn = $db->getConnection();
 
   $rsvp = new Rsvp($conn);
  
