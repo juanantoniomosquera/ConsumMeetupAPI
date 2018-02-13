@@ -9,7 +9,7 @@
   $database = new Database();
   $db = $database->getConnection();
  
-  $group = new Group($db);
+  $group = new Rsvp($db);
  
   $group->group_id = $_POST['group']['group_id'];
   $group->group_name = $_POST['group']['group_name'];
