@@ -15,11 +15,8 @@
  
   $group = new Group($db);
    
-  $group->group_lon = isset($_GET['lon']) ? $_GET['lon'] : print_r($_GET['lon']);
-  $group->group_lat = isset($_GET['lat']) ? $_GET['lat'] : die();
-
-  print_r($_GET['lon']);
-  print_r($_GET['lat']);
+  $group->group_lon = isset($_GET['group lon']) ? $_GET['group_lon'] : die();
+  $group->group_lat = isset($_GET['group_lat']) ? $_GET['group_lat'] : die();
   
   $group->near();
  
