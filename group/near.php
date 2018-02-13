@@ -39,6 +39,7 @@
             "group_country" => $group_country,
             "group_lon" => $group_lon,
             "group_lat" => $group_lat
+            "group_distance" => $distance
         );
  
         array_push($groups_arr["records"], $group_item);

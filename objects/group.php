@@ -34,15 +34,18 @@ class Group {
 
 
   function near() {
-    $query = "SELECT
-                group_id,group_name,group_city,group_country, group_lon, group_lat
-            FROM
-                " . $this->tableName . "
-            WHERE
-                group_lon < :group_lon
-            AND
-                group_lat < :group_lat";
- 
+    //uso del Teorema del coseno para localizar grupos cercanos en distancia (200 km)
+    $query = "SELECT group_id_group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
+                                SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
+                                + COS(RADIANS(group_lon - :group_lon)) * COS(RADIANS(group_lat)) 
+                                * COS(RADIANS(group_lat))
+                                )
+                   ) AS distance
+             FROM " . $this->tableName . "
+             HAVING distance < 200
+             ORDER BY distance ASC";
+
+
     $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(":group_lon", $this->group_lon);
