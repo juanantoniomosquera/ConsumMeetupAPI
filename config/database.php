@@ -1,7 +1,13 @@
 <?php
+/**
+ * Clase para conexion a BBDD con patron Singleton.
+ *
+ * @author Juan Antonio Mosquera <juanantoniomosquera@juanantoniomosquera.com>
+ * @copyright 2018
+ * @license GPL
+ */ 
 class Database{
  
-    // specify your own database credentials
     private $host = "localhost";
     private $db_name = "meetup";
     private $username = "meetup";
