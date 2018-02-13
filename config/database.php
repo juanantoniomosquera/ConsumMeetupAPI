@@ -22,8 +22,6 @@ class Database{
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       } catch(PDOException $exception) {
         echo "Error de conexion: " . $exception->getMessage();
-      } catch(Exception $exception) {
-        echo "Excepcion al instanciar PDO: " . $exception->getMessage();
       }
       
     }

@@ -102,11 +102,8 @@ class Rsvp {
     $this->member_id=htmlspecialchars(strip_tags($this->member_id));
     $this->member_name=htmlspecialchars(strip_tags($this->member_name));
     
-    try{
-      $stmt = $this->conn->prepare($query);
-    } catch (Exception $e) {
-      return false;
-    }
+    $stmt = $this->conn->prepare($query);
+
     $stmt->bindParam(":group_id", $this->group_id);
     $stmt->bindParam(":group_name", $this->group_name);
     $stmt->bindParam(":group_city", $this->group_city);
