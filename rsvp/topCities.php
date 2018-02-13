@@ -32,7 +32,7 @@
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
       
         extract($row);  
-        $timeEvent = new DateTime((int)$event_time);
+        $timeEvent = new DateTime(".$event_time.");
         $group_item=array(
             "member_id" => $member_id,
             "member_name" => $member_name,
