@@ -42,8 +42,7 @@ class Group {
                                 )
                    ) AS distance
              FROM " . $this->tableName . "
-             HAVING distance < 200
-             ORDER BY distance ASC";
+             HAVING distance < 200";
 
 
     $stmt = $this->conn->prepare($query);
