@@ -23,7 +23,12 @@
 			                url: "../rsvp/insertRsvp.php",
                 			method: "POST",
 			                data: rsvp,
-			                dataType: "json",				
+			                dataType: "json",	
+                      success: function(data) {
+                        if(data.error) {
+                          console.log(data.error.msg);
+                        }
+                      }
             			}); 
 			};
     		</script>

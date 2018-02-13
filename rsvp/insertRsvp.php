@@ -23,8 +23,9 @@
   $rsvp->member_name = $_POST['member']['member_name'];
  
   if(!$rsvp->insertRsvp()){
-    echo json_encode(
-        array("message" => "Fallo al almacenar dato.")
-    );
+    echo json_encode(array(
+        'error' => array(
+            'msg' => 'Error almacenando datos en BBDD'
+        ),  
   }
 ?>
