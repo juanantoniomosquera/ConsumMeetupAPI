@@ -14,8 +14,12 @@
   $db = $database->getConnection();
  
   $group = new Group($db);
-   
-  $group->group_lon = isset($_GET['group lon']) ? $_GET['group_lon'] : print_r($_GET['group_lon']);
+
+
+  print_r($_GET['group_lon']);
+  die();
+
+  $group->group_lon = isset($_GET['group lon']) ? $_GET['group_lon'] : die();
   $group->group_lat = isset($_GET['group_lat']) ? $_GET['group_lat'] : die();
   
   $group->near();
