@@ -11,7 +11,7 @@
  
   // get database connection
   $database = new Database();
-  $db = $database->getConnection();
+  $db = Database::getInstance();
  
   $rsvp = new Rsvp($db);
 

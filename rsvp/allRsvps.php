@@ -9,7 +9,7 @@
  
   // instantiate database and group object
   $database = new Database();
-  $db = $database->getConnection();
+  $db = Database::getInstance();
  
   // initialize object
   $rsvp = new Rsvp($db);
