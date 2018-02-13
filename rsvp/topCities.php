@@ -37,7 +37,7 @@
             "member_id" => $member_id,
             "member_name" => $member_name,
             "group_city" => $group_city,
-            "event_time" => $timeEvent->format('Y-m-d'),
+            "event_time" => $timeEvent->format('c'),
             "totalAsistentes" => $totalAsistentes
         );
  
