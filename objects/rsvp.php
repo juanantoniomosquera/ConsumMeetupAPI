@@ -120,6 +120,7 @@ class Rsvp {
     $query = "SELECT member_name,count(member_id) totalAsistentes
              FROM " . $this->tableName . "
              WHERE event_time > :event_time
+             GROUP BY member_name
              ORDER BY totalAsistentes";
 
 
