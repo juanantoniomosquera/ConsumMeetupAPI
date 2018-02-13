@@ -39,9 +39,9 @@ class Group {
             FROM
                 " . $this->tableName . "
             WHERE
-                group_lon = :group_lon
+                group_lon < :group_lon
             AND
-                group_lat = :group_lat";
+                group_lat < :group_lat";
  
     $stmt = $this->conn->prepare( $query );
 
