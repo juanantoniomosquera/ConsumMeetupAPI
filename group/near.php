@@ -15,7 +15,7 @@
  
   $group = new Group($db);
    
-  $group->group_lon = isset($_GET['lon']) ? $_GET['lon'] : print_r($_GET['lon']);
+  $group->group_lon = isset($_GET['lon']) ? $_GET['lon'] : die();
   $group->group_lat = isset($_GET['lat']) ? $_GET['lat'] : die();
 
   print_r($_GET['lon']);
