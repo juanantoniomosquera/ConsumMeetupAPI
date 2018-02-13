@@ -39,14 +39,14 @@ class Group {
             FROM
                 " . $this->tableName . "
             WHERE
-                group_lon = ?
+                group_lon = :group_lon
             AND
-                group_lat = ?";
+                group_lat = :group_lat";
  
     $stmt = $this->conn->prepare( $query );
 
-    $stmt->bindParam(1, $this->group_lon);
-    $stmt->bindParam(2, $this->group_lat);
+    $stmt->bindParam("group_lon", $this->group_lon);
+    $stmt->bindParam("group_lat", $this->group_lat);
  
     // execute query
     $stmt->execute();
