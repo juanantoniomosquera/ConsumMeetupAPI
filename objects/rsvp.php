@@ -94,7 +94,8 @@ class Rsvp {
     $stmt->bindParam(":event_time", $this->event_time);
     $stmt->bindParam(":event_url", $this->event_url);
 
-    die($stmt);
+    print_r($query);
+    die(termino);
     // execute query
     if($stmt->execute()){
         return true;
