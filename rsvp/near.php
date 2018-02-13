@@ -15,7 +15,7 @@
  
   $rsvp = new Rsvp($db);
 
-  $rsvpp->group_lon = $_GET['group_lon'];
+  $rsvp->group_lon = $_GET['group_lon'];
   $rsvp->group_lat = $_GET['group_lat'];
 
   $stmt = $rsvp->near();
