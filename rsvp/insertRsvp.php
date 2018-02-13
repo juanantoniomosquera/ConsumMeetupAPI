@@ -2,12 +2,8 @@
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
-  try {
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
-  } catch (PDOException $e) {
-    die("fallo en la bbdfd ".$e);
-  }
+  $db = Database::getInstance();
+  $conn = $db->getConnection();
   
   $rsvp = new Rsvp($conn);
  
@@ -25,15 +21,10 @@
   $rsvp->guests = $_POST['guests'];
   $rsvp->member_id = $_POST['member']['member_id'];
   $rsvp->member_name = $_POST['member']['member_name'];
-
-  try {
-    $rsvp->insertRsvp();
-  } catch (PDOException $e) {
-    echo json_encode(array(
-      'error' => array(
-        'msg' => $e->getMessage(),
-        'code' => $e->getCode(),
-      ),
-    ));
+ 
+  if(!$rsvp->insertRsvp()){
+    echo json_encode(
+        array("message" => "Fallo al almacenar dato.")
+      );
   }
 ?>
