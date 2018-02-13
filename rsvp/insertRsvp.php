@@ -3,27 +3,27 @@
   // get database connection
   include_once '../config/database.php';
  
-  // instantiate group object
+  // instantiate rsvp object
   include_once '../objects/rsvp.php';
  
   $database = new Database();
   $db = $database->getConnection();
  
-  $group = new Rsvp($db);
+  $rsvp = new Rsvp($db);
  
-  $group->group_id = $_POST['group']['group_id'];
-  $group->group_name = $_POST['group']['group_name'];
-  $group->group_city = $_POST['group']['group_city'];
-  $group->group_country = $_POST['group']['group_country'];
-  $group->group_lon = $_POST['group']['group_lon'];
-  $group->group_lat = $_POST['group']['group_lat'];
-  $group->rsvp_id = $_POST['rsvp_id'];
-  $group->event_id = $_POST['event']['event_id'];
-  $group->event_name = $_POST['event']['event_name'];
-  $group->event_time = $_POST['event']['event_time'];
-  $group->event_url = $_POST['event']['event_url'];
+  $rsvp->rsvp_id = $_POST['rsvp']['rsvp_id'];
+  $rsvp->rsvp_name = $_POST['rsvp']['rsvp_name'];
+  $rsvp->rsvp_city = $_POST['rsvp']['rsvp_city'];
+  $rsvp->rsvp_country = $_POST['rsvp']['rsvp_country'];
+  $rsvp->rsvp_lon = $_POST['rsvp']['rsvp_lon'];
+  $rsvp->rsvp_lat = $_POST['rsvp']['rsvp_lat'];
+  $rsvp->rsvp_id = $_POST['rsvp_id'];
+  $rsvp->event_id = $_POST['event']['event_id'];
+  $rsvp->event_name = $_POST['event']['event_name'];
+  $rsvp->event_time = $_POST['event']['time'];
+  $rsvp->event_url = $_POST['event']['event_url'];
  
-  if($group->insertRsvp()){
+  if($rsvp->insertRsvp()){
     echo '{';
         echo '"message": "guardado"';
     echo '}';
