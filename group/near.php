@@ -15,8 +15,8 @@
  
   $group = new Group($db);
 
-  $group->group_lon = isset($_GET['group lon']) ? $_GET['group_lon'] : die('paro en lon');
-  $group->group_lat = isset($_GET['group_lat']) ? $_GET['group_lat'] : die('paro en lat');
+  $group->group_lon = !empty($_GET['group lon']) ? $_GET['group_lon'] : die('Sin valor para longitud');
+  $group->group_lat = !empty($_GET['group_lat']) ? $_GET['group_lat'] : die('Sin valor para latitud');
   
   $group->near();
  
