@@ -1,7 +1,7 @@
 <html>
 	<head>
-		<script src="shared/bower_components/jquery/jquery.min.js"></script>
-		<script src="shared/bower_components/must/must.js"></script>
+		<script src="../shared/bower_components/jquery/jquery.min.js"></script>
+		<script src="../shared/bower_components/must/must.js"></script>
     		<script>
       			must.Rsvps(function(rsvp) {
 		        	
@@ -20,7 +20,7 @@
 			
 			function insertRsvp(rsvp) {
 				var request = $.ajax({
-			                url: "rsvp/insertRsvp.php",
+			                url: "../rsvp/insertRsvp.php",
                 			method: "POST",
 			                data: rsvp,
 			                dataType: "json",				

@@ -1,9 +1,5 @@
 <?php
-
-  // get database connection
   include_once '../config/database.php';
- 
-  // instantiate rsvp object
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
@@ -26,13 +22,9 @@
   $rsvp->member_id = $_POST['member']['member_id'];
   $rsvp->member_name = $_POST['member']['member_name'];
  
-  if($rsvp->insertRsvp()){
+  if(!$rsvp->insertRsvp()){
     echo '{';
-        echo '"message": "guardado"';
-    echo '}';
-  } else {
-    echo '{';
-        echo '"message": "fallo al guardar"';
+        echo '"message": "Fallo al almacenar dato"';
     echo '}';
   }
 ?>

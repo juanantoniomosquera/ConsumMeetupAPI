@@ -1,4 +1,11 @@
 <?php
+/**
+ * Clase para gestion de RSVPs de Meetup API
+ *
+ * @author Juan Antonio Mosquera <juanantoniomosquera@juanantoniomosquera.com>
+ * @copyright 2018
+ * @license GPL
+ */ 
 class Rsvp {
   private $conn;
   private $tableName = "rsvps";
@@ -22,22 +29,29 @@ class Rsvp {
     $this->conn = $db;
   }
 
-  // obtains all rsvps
+  /**
+   * Funcion que obtiene todos los RSVPs almacenados
+   *
+   * @return object resultado de consulta a BBDD
+   *
+   */ 
   function givemeRsvps(){
  
-    // select all query
     $query = "SELECT * FROM " . $this->tableName;
  
-    // prepare query statement
     $stmt = $this->conn->prepare($query);
  
-    // execute query
     $stmt->execute();
  
     return $stmt;
   }
 
-
+  /**
+   * Funcion que devuelve grupos de Meetup a 200 km a la redondas segun coordenadas usando teorema del coseno
+   *
+   * @return object resultado consulta a BBDD 
+   *
+   */ 
   function near() {
     //uso del Teorema del coseno para localizar grupos cercanos en distancia (200 km)
     $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
@@ -49,18 +63,22 @@ class Rsvp {
              FROM " . $this->tableName . "
              HAVING distance < 200";
 
-
     $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
  
-    // execute query
     $stmt->execute();
 
     return $stmt;
   }  
 
+  /**
+   * Funcion que inserta en BBDD RSVPs
+   *
+   * @return Boolean true si la insercion ha sido correcta
+   *
+   */ 
   function insertRsvp(){
  
     $query = "INSERT INTO
@@ -71,7 +89,6 @@ class Rsvp {
  
     $stmt = $this->conn->prepare($query);
 
-    // limpiar
     $this->group_id=htmlspecialchars(strip_tags($this->group_id));
     $this->group_name=htmlspecialchars(strip_tags($this->group_name));
     $this->group_city=htmlspecialchars(strip_tags($this->group_city));
@@ -87,7 +104,6 @@ class Rsvp {
     $this->member_id=htmlspecialchars(strip_tags($this->member_id));
     $this->member_name=htmlspecialchars(strip_tags($this->member_name));
  
-    // bind values
     $stmt->bindParam(":group_id", $this->group_id);
     $stmt->bindParam(":group_name", $this->group_name);
     $stmt->bindParam(":group_city", $this->group_city);
@@ -103,7 +119,6 @@ class Rsvp {
     $stmt->bindParam(":member_id", $this->member_id);
     $stmt->bindParam(":member_name", $this->member_name);
 
-    // execute query
     if($stmt->execute()){
       return true;
     }
@@ -111,6 +126,12 @@ class Rsvp {
      
   }
 
+  /**
+   * Funcion que muestra las ciudades TOP con asistentes a eventos segun fecha de evento
+   *
+   * @return Object Datos de evento, ciudad y asistentes
+   *
+   */ 
   function topCities() {
     $query = "SELECT event_name,event_time,group_city,count(event_id) totalAsistentes
              FROM " . $this->tableName . "
@@ -118,12 +139,10 @@ class Rsvp {
              GROUP BY group_city
              ORDER BY totalAsistentes DESC";
 
-
     $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(":event_time", $this->event_time);
  
-    // execute query
     $stmt->execute();
 
     return $stmt;

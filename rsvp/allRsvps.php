@@ -1,33 +1,24 @@
 <?php
-  // required headers
   header("Access-Control-Allow-Origin: *");
   header("Content-Type: application/json; charset=UTF-8");
  
-  // include database and object files
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
   $conn = $db->getConnection();
 
-  // initialize object
   $rsvp = new Rsvp($conn);
  
-  // query rsvp
   $stmt = $rsvp->givemeAllRsvps();
   $num = $stmt->rowCount();
  
-  // check if more than 0 record found
   if($num>0){
  
     $groups_arr=array();
     $groups_arr["records"]=array();
  
-    // retrieve our table contents
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
         extract($row);
  
         $group_item=array(

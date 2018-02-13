@@ -1,1 +1,32 @@
 # ConsumMeetupAPI
+=================
+
+Aplicacion para mostrar a [EmpathyBroker](https://www.empathybroker.com/)
+
+Esta aplicacion consume RSVPs de la API de Meetup y los almacena en BBDD
+
+Tecnologias y documentacion utilizadas
+--------------------------------------
+
++ PHP 5.4.45
++ MySQL 5.5.59
++ Git 
++ HTML
++ jQuery
++ Must.js
++ Vim 2.16.1
++ [Meetup API RSVP](https://www.meetup.com/es-ES/meetup_api/docs/stream/2/rsvps/?uri=%2Fmeetup_api%2Fdocs%2Fstream%2F2%2Frsvps%2F)
++ GitHub
++ Google
+
+
+Ejemplo de uso
+--------------
+
++ Se informara por corre
+
+
+Ejemplo de uso
+--------------
+
++ Se informara por correo
