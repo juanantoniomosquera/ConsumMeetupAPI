@@ -56,7 +56,7 @@ class Group {
  
     // set values to object properties
     //$this->group_id = $row['group_id'];
-    $this->group_id = "id_inventado";
+    $this->group_id = $query;
     $this->group_name = $row['group_name'];
     $this->group_city = $row['group_city'];
     $this->group_country = $row['group_country'];
