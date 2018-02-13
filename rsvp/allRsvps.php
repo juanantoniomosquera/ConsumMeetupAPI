@@ -7,8 +7,6 @@
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
-  // instantiate database and group object
-  $database = new Database();
   $db = Database::getInstance();
  
   // initialize object

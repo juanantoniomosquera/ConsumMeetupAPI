@@ -9,8 +9,6 @@
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
-  // get database connection
-  $database = new Database();
   $db = Database::getInstance();
  
   $rsvp = new Rsvp($db);

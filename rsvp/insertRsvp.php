@@ -6,7 +6,6 @@
   // instantiate rsvp object
   include_once '../objects/rsvp.php';
  
-  $database = new Database();
   $db = Database::getInstance();
  
   $rsvp = new Rsvp($db);
