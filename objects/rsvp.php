@@ -112,7 +112,7 @@ class Rsvp {
   }
 
   function topCities() {
-    $query = "SELECT event_name,event_time,group_city,count(member_id) totalAsistentes
+    $query = "SELECT event_name,event_time,group_city,count(event_id) totalAsistentes
              FROM " . $this->tableName . "
              WHERE event_time > :event_time
              GROUP BY group_city
