@@ -25,7 +25,7 @@ class Rsvp {
   public $member_id;
   public $member_name;
   
-  public function __construct($db){
+  public function __construct($db) {
     $this->conn = $db;
   }
 
@@ -35,7 +35,7 @@ class Rsvp {
    * @return object resultado de consulta a BBDD
    *
    */ 
-  function givemeRsvps(){
+  public function givemeRsvps() {
  
     $query = "SELECT * FROM " . $this->tableName;
  
@@ -52,7 +52,7 @@ class Rsvp {
    * @return object resultado consulta a BBDD 
    *
    */ 
-  function near() {
+  public function near() {
     //uso del Teorema del coseno para localizar grupos cercanos en distancia (200 km)
     $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
                                 SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
@@ -79,7 +79,7 @@ class Rsvp {
    * @return Boolean true si la insercion ha sido correcta
    *
    */ 
-  function insertRsvp(){
+  public function insertRsvp() {
  
     $query = "INSERT INTO
                 " . $this->tableName . "
@@ -123,7 +123,6 @@ class Rsvp {
       return true;
     }
     return false;
-     
   }
 
   /**
@@ -132,7 +131,7 @@ class Rsvp {
    * @return Object Datos de evento, ciudad y asistentes
    *
    */ 
-  function topCities() {
+  public function topCities() {
     $query = "SELECT event_name,event_time,group_city,count(event_id) totalAsistentes
              FROM " . $this->tableName . "
              WHERE event_time = :event_time

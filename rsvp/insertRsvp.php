@@ -23,8 +23,8 @@
   $rsvp->member_name = $_POST['member']['member_name'];
  
   if(!$rsvp->insertRsvp()){
-    echo '{';
-        echo '"message": "Fallo al almacenar dato"';
-    echo '}';
+    echo json_encode(
+        array("message" => "Fallo al almacenar dato.")
+    );
   }
 ?>

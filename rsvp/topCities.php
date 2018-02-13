@@ -37,8 +37,7 @@
  
     echo json_encode($eventos_arr);
   }
- 
-  else{
+  else {
     echo json_encode(
       array("message" => "No se encontraron ciudades.")
     );

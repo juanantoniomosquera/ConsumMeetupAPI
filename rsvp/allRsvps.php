@@ -13,24 +13,23 @@
   $stmt = $rsvp->givemeAllRsvps();
   $num = $stmt->rowCount();
  
-  if($num>0){
- 
+  if($num>0) { 
     $groups_arr=array();
     $groups_arr["records"]=array();
  
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
+      extract($row);
  
-        $group_item=array(
-            "group_id" => $group_id,
-            "group_name" => $group_name,
-            "group_city" => $group_country,
-            "group_country" => $group_country,
-            "group_lon" => $group_lon,
-            "group_lat" => $group_lat
-        );
+      $group_item=array(
+        "group_id" => $group_id,
+        "group_name" => $group_name,
+        "group_city" => $group_country,
+        "group_country" => $group_country,
+        "group_lon" => $group_lon,
+        "group_lat" => $group_lat
+      );
  
-        array_push($groups_arr["records"], $group_item);
+      array_push($groups_arr["records"], $group_item);
     }
  
     echo json_encode($groups_arr);
