@@ -15,7 +15,7 @@
  
   $rsvp = new Rsvp($db);
 
-  $timeObject = new DateTime($_GET['event_time']);
+  $timeObjectParam = new DateTime($_GET['event_time']);
   $rsvp->event_time = $timeObject->format('U');
 
   $stmt = $rsvp->topCities();
@@ -30,13 +30,14 @@
  
     // retrieve our table contents
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
- 
+      
+        extract($row);  
+        $timeEvent = new DateTime($event_time);
         $group_item=array(
             "member_id" => $member_id,
             "member_name" => $member_name,
             "group_city" => $group_city,
-            "event_time" => date("Y-m-d H:i:s",$event_time),
+            "event_time" => $timeEvent->format('Y-m-d'),
             "totalAsistentes" => $totalAsistentes
         );
  
