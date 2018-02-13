@@ -17,7 +17,10 @@
    
   $group->group_lon = isset($_GET['lon']) ? $_GET['lon'] : die();
   $group->group_lat = isset($_GET['lat']) ? $_GET['lat'] : die();
- 
+
+  print_r($_GET['lon']);
+  print_r($_GET['lat']);
+  
   $group->near();
  
   $group_arr = array(
