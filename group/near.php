@@ -15,12 +15,12 @@
  
   $group = new Group($db);
 
-  print_r($_GET['group_lon']);
+  //$group->group_lon = !empty($_GET['group lon']) ? $_GET['group_lon'] : die('Sin valor para longitud');
+  //$group->group_lat = !empty($_GET['group_lat']) ? $_GET['group_lat'] : die('Sin valor para latitud');
 
+  $group->group_lon = $_GET['group lon']);
+  $group->group_lat = $_GET['group lat']);
 
-  $group->group_lon = !empty($_GET['group lon']) ? $_GET['group_lon'] : die('Sin valor para longitud');
-  $group->group_lat = !empty($_GET['group_lat']) ? $_GET['group_lat'] : die('Sin valor para latitud');
-  
   $group->near();
  
   $group_arr = array(
