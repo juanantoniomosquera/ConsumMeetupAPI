@@ -112,14 +112,15 @@ class Rsvp {
   }
 
   function topCities() {
-    $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
-                                SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
-                                + COS(RADIANS(group_lon - :group_lon)) * COS(RADIANS(group_lat)) 
-                                * COS(RADIANS(:group_lat))
-                                )
-                   ) AS distance
+    /*
+    $query = "SELECT member_name,count(member_id) totalAsistentes
              FROM " . $this->tableName . "
-             HAVING distance < 200";
+             ORDER BY totalAsistentes";
+     */
+    $query = "SELECT member_name,count(member_id) totalAsistentes
+             FROM " . $this->tableName . "
+             WHERE event_time > :event_time
+             ORDER BY totalAsistentes";
 
 
     $stmt = $this->conn->prepare($query);
