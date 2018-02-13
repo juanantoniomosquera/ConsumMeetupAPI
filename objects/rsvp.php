@@ -91,7 +91,12 @@ class Rsvp {
                 group_id=:group_id, group_name=:group_name,group_city=:group_city,group_country=:group_country,group_lon=:group_lon,group_lat=:group_lat,
                 rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url,guests=:guests,member_id=:member_id,member_name=:member_name";
  
-    $stmt = $this->conn->prepare($query);
+
+    try {
+      $stmt = $this->conn->prepare($query);
+    } catch(PDOException $e) {
+      print_r($e);
+    }
 
     $this->group_id=htmlspecialchars(strip_tags($this->group_id));
     $this->group_name=htmlspecialchars(strip_tags($this->group_name));
