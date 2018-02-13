@@ -63,7 +63,11 @@ class Rsvp {
              FROM " . $this->tableName . "
              HAVING distance < 200";
 
-    $stmt = $this->conn->prepare($query);
+    try {
+      $stmt = $this->conn->prepare($query);
+    } catch(PDOException $e) {
+      print_r($e);
+    }
 
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
