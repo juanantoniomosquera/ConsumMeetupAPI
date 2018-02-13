@@ -15,7 +15,7 @@ class Rsvp {
   public $event_time;
   public $event_url;
   public $guests;
-  public $member_id
+  public $member_id;
   public $member_name;
   
   public function __construct($db){
