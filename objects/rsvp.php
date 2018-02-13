@@ -103,26 +103,30 @@ class Rsvp {
     $this->guests=htmlspecialchars(strip_tags($this->guests));
     $this->member_id=htmlspecialchars(strip_tags($this->member_id));
     $this->member_name=htmlspecialchars(strip_tags($this->member_name));
- 
-    $stmt->bindParam(":group_id", $this->group_id);
-    $stmt->bindParam(":group_name", $this->group_name);
-    $stmt->bindParam(":group_city", $this->group_city);
-    $stmt->bindParam(":group_country", $this->group_country);
-    $stmt->bindParam(":group_lon", $this->group_lon);
-    $stmt->bindParam(":group_lat", $this->group_lat);
-    $stmt->bindParam(":rsvp_id", $this->rsvp_id);
-    $stmt->bindParam(":event_id", $this->event_id);
-    $stmt->bindParam(":event_name", $this->event_name);
-    $stmt->bindParam(":event_time", $this->event_time);
-    $stmt->bindParam(":event_url", $this->event_url);
-    $stmt->bindParam(":guests", $this->guests);
-    $stmt->bindParam(":member_id", $this->member_id);
-    $stmt->bindParam(":member_name", $this->member_name);
 
-    if($stmt->execute()){
+    try {
+      $stmt = $this->conn->prepare($query);
+
+      $stmt->bindParam(":group_id", $this->group_id);
+      $stmt->bindParam(":group_name", $this->group_name);
+      $stmt->bindParam(":group_city", $this->group_city);
+      $stmt->bindParam(":group_country", $this->group_country);
+      $stmt->bindParam(":group_lon", $this->group_lon);
+      $stmt->bindParam(":group_lat", $this->group_lat);
+      $stmt->bindParam(":rsvp_id", $this->rsvp_id);
+      $stmt->bindParam(":event_id", $this->event_id);
+      $stmt->bindParam(":event_name", $this->event_name);
+      $stmt->bindParam(":event_time", $this->event_time);
+      $stmt->bindParam(":event_url", $this->event_url);
+      $stmt->bindParam(":guests", $this->guests);
+      $stmt->bindParam(":member_id", $this->member_id);
+      $stmt->bindParam(":member_name", $this->member_name);
+
+      $stmt->execute();
       return true;
+    } catch(PDOException $e) {
+      return false;
     }
-    return false;
   }
 
   /**
