@@ -34,6 +34,7 @@
         extract($row);  
         $group_item=array(
             "group_city" => $group_city,
+            "event_name" => $event_name,
             "event_time" => date('Y-m-d',substr($event_time,0,10)),
             "totalAsistentes" => $totalAsistentes
         );
