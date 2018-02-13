@@ -29,8 +29,8 @@ class Database{
     }
 
     public function query($query) {
-      $stmt = $this->conn->prepare($query);
-      return $stmt->execute();
+      return $this->conn->prepare($query);
+      //return $stmt->execute();
     }
 }
 ?>
