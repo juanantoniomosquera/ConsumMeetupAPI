@@ -15,7 +15,7 @@
  
   $rsvp = new Rsvp($db);
 
-  $this->event_time = $_GET['event_time'];
+  $rsvp->event_time = $_GET['event_time'];
 
   $stmt = $rsvp->topCities();
   $num = $stmt->rowCount();
