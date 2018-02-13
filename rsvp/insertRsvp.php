@@ -7,8 +7,9 @@
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
- 
-  $rsvp = new Rsvp($db);
+  $conn = $db->getConnection();
+
+  $rsvp = new Rsvp($conn);
  
   $rsvp->group_id = $_POST['group']['group_id'];
   $rsvp->group_name = $_POST['group']['group_name'];

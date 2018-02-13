@@ -10,8 +10,9 @@
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
- 
-  $rsvp = new Rsvp($db);
+  $conn = $db->getConnection();
+
+  $rsvp = new Rsvp($conn);
 
   $rsvp->group_lon = $_GET['group_lon'];
   $rsvp->group_lat = $_GET['group_lat'];

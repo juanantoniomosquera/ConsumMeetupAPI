@@ -10,8 +10,9 @@
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
- 
-  $rsvp = new Rsvp($db);
+  $conn = $db->getConnection();
+
+  $rsvp = new Rsvp($conn);
 
   $rsvp->event_time = $_GET['event_time'];
 

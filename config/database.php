@@ -19,8 +19,6 @@ class Database{
       
     }
 
-    private function __clone(){}
-
     public static function getInstance() {
       if (!(self::$_instance instanceof self)) {
         self::$_instance = new self();
@@ -28,9 +26,8 @@ class Database{
       return self::$_instance;
     }
 
-    public function query($query) {
-      return $this->conn->prepare($query);
-      //return $stmt->execute();
+    public function getConnection() {
+      return $this->conn;
     }
 }
 ?>

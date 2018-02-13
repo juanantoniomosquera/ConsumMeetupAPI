@@ -8,9 +8,10 @@
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
- 
+  $conn = $db->getConnection();
+
   // initialize object
-  $rsvp = new Rsvp($db);
+  $rsvp = new Rsvp($conn);
  
   // query rsvp
   $stmt = $rsvp->givemeAllRsvps();
