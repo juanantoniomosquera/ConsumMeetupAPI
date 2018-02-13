@@ -32,12 +32,11 @@
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
       
         extract($row);  
-        $timeEvent = new DateTime("@$event_time");
         $group_item=array(
             "member_id" => $member_id,
             "member_name" => $member_name,
             "group_city" => $group_city,
-            "event_time" => $timeEvent->format('c'),
+            "event_time" => date('c',$event_time),
             "totalAsistentes" => $totalAsistentes
         );
  

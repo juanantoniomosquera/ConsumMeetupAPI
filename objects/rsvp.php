@@ -117,11 +117,11 @@ class Rsvp {
              FROM " . $this->tableName . "
              ORDER BY totalAsistentes";
      */
-    $query = "SELECT member_id,member_name, event_time,group_city,count(member_id) totalAsistentes
+    $query = "SELECT member_id,member_name,event_time,group_city,count(member_id) totalAsistentes
              FROM " . $this->tableName . "
              WHERE event_time > :event_time
              GROUP BY member_name
-             ORDER BY totalAsistentes";
+             ORDER BY totalAsistentes DESC";
 
 
     $stmt = $this->conn->prepare($query);
