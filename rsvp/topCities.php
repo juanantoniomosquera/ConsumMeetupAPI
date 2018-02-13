@@ -36,7 +36,7 @@
             "member_id" => $member_id,
             "member_name" => $member_name,
             "group_city" => $group_city,
-            "event_time" => date('c',$event_time),
+            "event_time" => date('c',substr($event_time,0,10)),
             "totalAsistentes" => $totalAsistentes
         );
  
