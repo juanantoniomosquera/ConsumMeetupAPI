@@ -14,6 +14,9 @@ class Rsvp {
   public $event_name;
   public $event_time;
   public $event_url;
+  public $guests;
+  public $member_id
+  public $member_name;
   
   public function __construct($db){
     $this->conn = $db;
@@ -64,7 +67,7 @@ class Rsvp {
                 " . $this->tableName . "
             SET
                 group_id=:group_id, group_name=:group_name,group_city=:group_city,group_country=:group_country,group_lon=:group_lon,group_lat=:group_lat,
-                rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url";
+                rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url,guests=:guests,member_id=:member_id,member_name=:member_name";
  
     $stmt = $this->conn->prepare($query);
  
@@ -80,6 +83,9 @@ class Rsvp {
     $this->event_name=htmlspecialchars(strip_tags($this->event_name));
     $this->event_time=htmlspecialchars(strip_tags($this->event_time));
     $this->event_url=htmlspecialchars(strip_tags($this->event_url));
+    $this->guests=htmlspecialchars(strip_tags($this->guests));
+    $this->member_id=htmlspecialchars(strip_tags($this->member_id));
+    $this->member_name=htmlspecialchars(strip_tags($this->member_name));
  
     // bind values
     $stmt->bindParam(":group_id", $this->group_id);
@@ -93,6 +99,9 @@ class Rsvp {
     $stmt->bindParam(":event_name", $this->event_name);
     $stmt->bindParam(":event_time", $this->event_time);
     $stmt->bindParam(":event_url", $this->event_url);
+    $stmt->bindParam(":guests", $this->guests);
+    $stmt->bindParam(":member_id", $this->member_id);
+    $stmt->bindParam(":member_name", $this->member_name);
 
     // execute query
     if($stmt->execute()){
@@ -101,6 +110,27 @@ class Rsvp {
     return false;
      
   }
+
+  function topCities() {
+    $query = "SELECT group_id,group_name,group_city,group_country,group_lon,group_lat, (6371 * ACOS( 
+                                SIN(RADIANS(group_lat)) * SIN(RADIANS(:group_lat)) 
+                                + COS(RADIANS(group_lon - :group_lon)) * COS(RADIANS(group_lat)) 
+                                * COS(RADIANS(:group_lat))
+                                )
+                   ) AS distance
+             FROM " . $this->tableName . "
+             HAVING distance < 200";
+
+
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(":event_time", $this->event_time);
+ 
+    // execute query
+    $stmt->execute();
+
+    return $stmt;
+  }  
 
 }
 ?>

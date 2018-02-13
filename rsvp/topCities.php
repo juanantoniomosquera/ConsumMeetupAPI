@@ -7,18 +7,17 @@
  
   // include database and object files
   include_once '../config/database.php';
-  include_once '../objects/group.php';
+  include_once '../objects/rsvp.php';
  
   // get database connection
   $database = new Database();
   $db = $database->getConnection();
  
-  $group = new Group($db);
+  $rsvp = new Rsvp($db);
 
-  $group->group_lon = $_GET['group_lon'];
-  $group->group_lat = $_GET['group_lat'];
+  $rsvp->event_time = $_GET['event_time'];
 
-  $stmt = $group->near();
+  $stmt = $rsvp->topCities();
   $num = $stmt->rowCount();
     
   // check if more than 0 record found
@@ -50,7 +49,7 @@
  
   else{
     echo json_encode(
-        array("message" => "No se encontraron grupos.")
+        array("message" => "No se encontraron ciudades.")
     );
   }
 

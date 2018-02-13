@@ -22,6 +22,9 @@
   $rsvp->event_name = $_POST['event']['event_name'];
   $rsvp->event_time = $_POST['event']['time'];
   $rsvp->event_url = $_POST['event']['event_url'];
+  $rsvp->guests = $_POST['guests'];
+  $rsvp->member_id = $_POST['member']['member_id'];
+  $rsvp->member_name = $_POST['member']['member_name'];
  
   if($rsvp->insertRsvp()){
     echo '{';
