@@ -63,7 +63,7 @@ class Rsvp {
     $query = "INSERT INTO
                 " . $this->tableName . "
             SET
-                group_id=:group_id, group_name=:group_name,group_city=:group_city,group_country=:group_country,group_lon=:group_lon,group_lat=:group_lat
+                group_id=:group_id, group_name=:group_name,group_city=:group_city,group_country=:group_country,group_lon=:group_lon,group_lat=:group_lat,
                 rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url";
  
     $stmt = $this->conn->prepare($query);
@@ -96,7 +96,6 @@ class Rsvp {
 
     // execute query
     if($stmt->execute()){
-      die("es true");
       return true;
     }
     return false;
