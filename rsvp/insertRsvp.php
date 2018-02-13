@@ -3,7 +3,12 @@
   include_once '../objects/rsvp.php';
  
   $db = Database::getInstance();
-  $conn = $db->getConnection();
+  
+  try {
+    $conn = $db->getConnection();
+  } catch(PDOExcepcion $e) {
+    print_r($e);
+  }
 
   $rsvp = new Rsvp($conn);
  
