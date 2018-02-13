@@ -11,7 +11,7 @@ class Database{
     private $host = "localhost";
     private $db_name = "meetup";
     private $username = "meetup";
-    private $password = "abc123.";
+    private $password = "aBc123.._X";
     private $conn;
     static $_instance;
     
