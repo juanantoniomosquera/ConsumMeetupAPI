@@ -10,6 +10,7 @@ Tecnologias y documentacion utilizadas
 + PHP 5.4.45
 + MySQL 5.5.59
 + Git 2.16.1
++ Google chrome + JsonView extension
 + HTML
 + jQuery
 + Must.js
@@ -22,4 +23,4 @@ Tecnologias y documentacion utilizadas
 Ejemplo de uso
 --------------
 
-+ Se informara por corre
++ Se informara por correo
