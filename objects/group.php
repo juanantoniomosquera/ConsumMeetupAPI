@@ -45,8 +45,6 @@ class Group {
  
     $stmt = $this->conn->prepare( $query );
 
-    print_r($this->group_lon);
-    print_r($this->group_lat);
     $stmt->bindParam(1, $this->group_lon);
     $stmt->bindParam(2, $this->group_lat);
  
@@ -57,7 +55,8 @@ class Group {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
     // set values to object properties
-    $this->group_id = $row['group_id'];
+    //$this->group_id = $row['group_id'];
+    $this->group_id = "id_inventado";
     $this->group_name = $row['group_name'];
     $this->group_city = $row['group_city'];
     $this->group_country = $row['group_country'];
