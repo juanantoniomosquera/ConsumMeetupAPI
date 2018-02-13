@@ -15,23 +15,42 @@
  
   $group = new Group($db);
 
-  //$group->group_lon = !empty($_GET['group lon']) ? $_GET['group_lon'] : die('Sin valor para longitud');
-  //$group->group_lat = !empty($_GET['group_lat']) ? $_GET['group_lat'] : die('Sin valor para latitud');
-
   $group->group_lon = $_GET['group_lon'];
   $group->group_lat = $_GET['group_lat'];
 
-  $group->near();
+  $stmt = $group->near();
+  $num = $stmt->rowCount();
+    
+  // check if more than 0 record found
+  if($num>0){
  
-  $group_arr = array(
-    "group_id" =>  $group->group_id,
-    "group_name" => $group->group_name,
-    "group_city" => $group->group_city,
-    "group_country" => $group->group_country,
-    "group_lon" => $group->group_lon,
-    "group_lat" => $group->group_lat
+    // groups array
+    $groups_arr=array();
+    $groups_arr["records"]=array();
  
-  );
+    // retrieve our table contents
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
  
-  print_r(json_encode($group_arr));
+        $group_item=array(
+            "group_id" => $group_id,
+            "group_name" => $group_name,
+            "group_city" => $group_city,
+            "group_country" => $group_country,
+            "group_lon" => $group_lon,
+            "group_lat" => $group_lat
+        );
+ 
+        array_push($groups_arr["records"], $group_item);
+    }
+ 
+    echo json_encode($groups_arr);
+  }
+ 
+  else{
+    echo json_encode(
+        array("message" => "No se encontraron grupos.")
+    );
+  }
+
 ?>

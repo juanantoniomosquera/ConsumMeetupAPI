@@ -43,24 +43,15 @@ class Group {
             AND
                 group_lat < :group_lat";
  
-    $stmt = $this->conn->prepare( $query );
+    $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
  
     // execute query
     $stmt->execute();
- 
-    // get retrieved row
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
- 
-    // set values to object properties
-    $this->group_id = $row['group_id'];
-    $this->group_name = $row['group_name'];
-    $this->group_city = $row['group_city'];
-    $this->group_country = $row['group_country'];
-    $this->group_lon = $row['group_lon'];
-    $this->group_lat = $row['group_lat'];
+
+    return $stmt;
   }  
 
   function insertRsvp(){
