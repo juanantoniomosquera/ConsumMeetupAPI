@@ -33,13 +33,8 @@
         extract($row);
  
         $group_item=array(
-            "group_id" => $group_id,
-            "group_name" => $group_name,
-            "group_city" => $group_city,
-            "group_country" => $group_country,
-            "group_lon" => $group_lon,
-            "group_lat" => $group_lat,
-            "group_distance" => $distance
+            "member_id" => $member_id,
+            "totalAsistentes" => $totalAsistentes
         );
  
         array_push($groups_arr["records"], $group_item);
