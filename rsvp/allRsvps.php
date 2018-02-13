@@ -37,7 +37,7 @@
  
 else{
     echo json_encode(
-        array("message" => "No groups found.")
+        array("message" => "No se han encontrado grupos.")
     );
 }
 ?>
