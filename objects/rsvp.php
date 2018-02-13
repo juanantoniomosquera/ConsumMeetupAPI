@@ -1,27 +1,29 @@
 <?php
-class Group {
+class Rsvp {
   private $conn;
-  private $tableName = "groups";
+  private $tableName = "rsvps";
 
+  public $rsvp_id;
   public $group_id;
   public $group_name;
   public $group_city;
   public $group_country;
   public $group_lon;
   public $group_lat;
+  public $event_id;
+  public $event_name;
+  public $event_time;
+  public $event_url;
   
   public function __construct($db){
     $this->conn = $db;
   }
 
-  // obtains all groups
-  function givemeAllGroups(){
+  // obtains all rsvps
+  function givemeRsvps(){
  
     // select all query
-    $query = "SELECT
-                group_id,group_name,group_city,group_country, group_lon, group_lat
-            FROM
-                " . $this->tableName;
+    $query = "SELECT * FROM " . $this->tableName;
  
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -61,7 +63,8 @@ class Group {
     $query = "INSERT INTO
                 " . $this->tableName . "
             SET
-                group_id=:group_id, group_name=:group_name, group_city=:group_city, group_country=:group_country, group_lon=:group_lon, group_lat=:group_lat";
+                group_id=:group_id, group_name=:group_name, group_city=:group_city, group_country=:group_country, group_lon=:group_lon, group_lat=:group_lat
+                rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time";
  
     $stmt = $this->conn->prepare($query);
  
@@ -72,6 +75,11 @@ class Group {
     $this->group_country=htmlspecialchars(strip_tags($this->group_country));
     $this->group_lon=htmlspecialchars(strip_tags($this->group_lon));
     $this->group_lat=htmlspecialchars(strip_tags($this->group_lat));
+    $this->rsvp_id=htmlspecialchars(strip_tags($this->rsvp_id));
+    $this->event_id=htmlspecialchars(strip_tags($this->event_id));
+    $this->event_name=htmlspecialchars(strip_tags($this->event_name));
+    $this->event_time=htmlspecialchars(strip_tags($this->event_time));
+    $this->event_url=htmlspecialchars(strip_tags($this->event_url));
  
     // bind values
     $stmt->bindParam(":group_id", $this->group_id);
@@ -80,6 +88,11 @@ class Group {
     $stmt->bindParam(":group_country", $this->group_country);
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
+    $stmt->bindParam(":rsvp_id", $this->rsvp_id);
+    $stmt->bindParam(":event_id", $this->event_id);
+    $stmt->bindParam(":event_name", $this->event_name);
+    $stmt->bindParam(":event_time", $this->event_time);
+    $stmt->bindParam(":event_url", $this->event_url);
  
     // execute query
     if($stmt->execute()){

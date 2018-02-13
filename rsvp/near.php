@@ -1,54 +1,57 @@
 <?php
-  // required headers
   header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
+  header("Access-Control-Allow-Headers: access");
+  header("Access-Control-Allow-Methods: GET");
+  header("Access-Control-Allow-Credentials: true");
+  header('Content-Type: application/json');
  
   // include database and object files
   include_once '../config/database.php';
-  include_once '../objects/group.php';
+  include_once '../objects/rsvp.php';
  
-  // instantiate database and group object
+  // get database connection
   $database = new Database();
   $db = $database->getConnection();
  
-  // initialize object
-  $group = new Group($db);
- 
-  // query groups
-  $stmt = $group->givemeAllGroups();
+  $rsvp = new Rsvp($db);
+
+  $rsvpp->group_lon = $_GET['group_lon'];
+  $rsvp->group_lat = $_GET['group_lat'];
+
+  $stmt = $rsvp->near();
   $num = $stmt->rowCount();
- 
+    
   // check if more than 0 record found
   if($num>0){
  
+    // groups array
     $groups_arr=array();
     $groups_arr["records"]=array();
  
     // retrieve our table contents
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
         extract($row);
  
         $group_item=array(
             "group_id" => $group_id,
             "group_name" => $group_name,
-            "group_city" => $group_country,
+            "group_city" => $group_city,
             "group_country" => $group_country,
             "group_lon" => $group_lon,
-            "group_lat" => $group_lat
+            "group_lat" => $group_lat,
+            "group_distance" => $distance
         );
  
         array_push($groups_arr["records"], $group_item);
     }
  
     echo json_encode($groups_arr);
-}
+  }
  
-else{
+  else{
     echo json_encode(
-        array("message" => "No groups found.")
+        array("message" => "No se encontraron grupos.")
     );
-}
+  }
+
 ?>
