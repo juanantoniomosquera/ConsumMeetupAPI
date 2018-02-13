@@ -17,6 +17,7 @@
 
 
   print_r($_GET['group_lon']);
+  print_r($_GET['group_lat']);
   die();
 
   $group->group_lon = isset($_GET['group lon']) ? $_GET['group_lon'] : die();
