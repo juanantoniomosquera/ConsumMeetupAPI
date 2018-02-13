@@ -70,7 +70,9 @@ class Rsvp {
                 rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url,guests=:guests,member_id=:member_id,member_name=:member_name";
  
     $stmt = $this->conn->prepare($query);
- 
+
+    $timeObject = new DateTime("@$this->event_time");
+
     // limpiar
     $this->group_id=htmlspecialchars(strip_tags($this->group_id));
     $this->group_name=htmlspecialchars(strip_tags($this->group_name));
@@ -81,7 +83,7 @@ class Rsvp {
     $this->rsvp_id=htmlspecialchars(strip_tags($this->rsvp_id));
     $this->event_id=htmlspecialchars(strip_tags($this->event_id));
     $this->event_name=htmlspecialchars(strip_tags($this->event_name));
-    $this->event_time=htmlspecialchars(strip_tags($this->event_time));
+    $this->event_time=htmlspecialchars(strip_tags($timeObject->format('Y-m-d')));
     $this->event_url=htmlspecialchars(strip_tags($this->event_url));
     $this->guests=htmlspecialchars(strip_tags($this->guests));
     $this->member_id=htmlspecialchars(strip_tags($this->member_id));
@@ -114,7 +116,7 @@ class Rsvp {
   function topCities() {
     $query = "SELECT event_name,event_time,group_city,count(event_id) totalAsistentes
              FROM " . $this->tableName . "
-             WHERE event_time > :event_time
+             WHERE event_time = :event_time
              GROUP BY group_city
              ORDER BY totalAsistentes DESC";
 

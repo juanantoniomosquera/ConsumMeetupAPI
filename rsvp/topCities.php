@@ -24,25 +24,25 @@
   // check if more than 0 record found
   if($num>0){
  
-    // groups array
-    $groups_arr=array();
-    $groups_arr["records"]=array();
+    // array eventos por ciudad
+    $eventos_arr=array();
+    $eventos_arr["records"]=array();
  
     // retrieve our table contents
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
       
         extract($row);  
-        $group_item=array(
+        $evento_item=array(
             "group_city" => $group_city,
             "event_name" => $event_name,
-            "event_time" => date('Y-m-d',substr($event_time,0,10)),
+            "event_time" => $event_time,
             "totalAsistentes" => $totalAsistentes
         );
  
-        array_push($groups_arr["records"], $group_item);
+        array_push($eventos_arr["records"], $evento_item);
     }
  
-    echo json_encode($groups_arr);
+    echo json_encode($eventos_arr);
   }
  
   else{
