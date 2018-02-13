@@ -81,7 +81,7 @@ class Rsvp {
     $this->rsvp_id=htmlspecialchars(strip_tags($this->rsvp_id));
     $this->event_id=htmlspecialchars(strip_tags($this->event_id));
     $this->event_name=htmlspecialchars(strip_tags($this->event_name));
-    $this->event_time=htmlspecialchars(strip_tags(date('Y-m-d', substr($this->event_time,0,10)));
+    $this->event_time=htmlspecialchars(strip_tags(date('Y-m-d', substr($this->event_time,0,10))));
     $this->event_url=htmlspecialchars(strip_tags($this->event_url));
     $this->guests=htmlspecialchars(strip_tags($this->guests));
     $this->member_id=htmlspecialchars(strip_tags($this->member_id));
