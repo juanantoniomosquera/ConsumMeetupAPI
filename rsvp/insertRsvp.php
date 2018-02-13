@@ -21,11 +21,15 @@
   $rsvp->guests = $_POST['guests'];
   $rsvp->member_id = $_POST['member']['member_id'];
   $rsvp->member_name = $_POST['member']['member_name'];
- 
-  if(!$rsvp->insertRsvp()){
+
+  try {
+    $rsvp->insertRsvp();
+  } catch (PDOException $e) {
     echo json_encode(array(
-        'error' => array(
-            'msg' => 'Error almacenando datos en BBDD'
-        ),  
+      'error' => array(
+        'msg' => $e->getMessage(),
+        'code' => $e->getCode(),
+      ),
+    ));
   }
 ?>
