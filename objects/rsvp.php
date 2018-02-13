@@ -96,10 +96,9 @@ class Rsvp {
 
     // execute query
     if($stmt->execute()){
-      return true;
       die("es true");
+      return true;
     }
-    die("es false");
     return false;
      
   }
