@@ -2,9 +2,13 @@
   include_once '../config/database.php';
   include_once '../objects/rsvp.php';
  
-  $db = Database::getInstance();
-  $conn = $db->getConnection();
-
+  try {
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
+  } catch (PDOException $e) {
+    die("fallo en la bbdfd ".$e);
+  }
+  
   $rsvp = new Rsvp($conn);
  
   $rsvp->group_id = $_POST['group']['group_id'];

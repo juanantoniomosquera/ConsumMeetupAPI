@@ -63,11 +63,7 @@ class Rsvp {
              FROM " . $this->tableName . "
              HAVING distance < 200";
 
-    try {
-      $stmt = $this->conn->prepare($query);
-    } catch(PDOException $e) {
-      print_r($e);
-    }
+    $stmt = $this->conn->prepare($query);
 
     $stmt->bindParam(":group_lon", $this->group_lon);
     $stmt->bindParam(":group_lat", $this->group_lat);
@@ -91,12 +87,7 @@ class Rsvp {
                 group_id=:group_id, group_name=:group_name,group_city=:group_city,group_country=:group_country,group_lon=:group_lon,group_lat=:group_lat,
                 rsvp_id=:rsvp_id,event_id=:event_id,event_name=:event_name,event_time=:event_time,event_url=:event_url,guests=:guests,member_id=:member_id,member_name=:member_name";
  
-
-    try {
-      $stmt = $this->conn->prepare($query);
-    } catch(PDOException $e) {
-      print_r($e);
-    }
+    $stmt = $this->conn->prepare($query);
 
     $this->group_id=htmlspecialchars(strip_tags($this->group_id));
     $this->group_name=htmlspecialchars(strip_tags($this->group_name));
