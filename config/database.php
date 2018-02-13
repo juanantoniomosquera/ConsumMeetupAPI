@@ -21,6 +21,9 @@ class Database{
         $this->conn->exec("set names utf8");
       }catch(PDOException $exception){
         //echo "Connection error: " . $exception->getMessage();
+        echo json_encode(
+          array("message" => "Fallo al almacenar dato.")
+        );
         die('PDO CONNECTION ERROR: ' . $exception->getMessage() . '<br/>');
       }
       
